@@ -2,28 +2,61 @@ syntax = "proto3";
 package gdmp;
 
 message Packet {
-  int32 packet_type = 1;
+  int32 packet_type = 1; /* do we even need this lmao */
 
   oneof packet {
-    Placeholder placeholder   = 2;
-    Placeholder2 placeholder2 = 3;
-    Placeholder3 placeholder3 = 4;
-    PlayerJoin player_join    = 5;
+    PlaceholderPacket placeholder   = 2;
+    Placeholder2Packet placeholder2 = 3;
+    Placeholder3Packet placeholder3 = 4;
+    PlayerJoinPacket player_join    = 5;
   };
 }
 
-message RoomInfo {
+// --------- GENERIC TYPES (used in packets) ---------
+message Room {
   int32 level_id = 1;
   /* maybe more stuff, private rooms maybe? */
 }
 
-// --------- PACKET TYPES ----------
-// these might be used for proper auth later
-message Placeholder {}
-message Placeholder2 {}
-message Placeholder3 {}
-
-message PlayerJoin {
-    RoomInfo room = 1;
+// todo for position: flipped/gravity
+message Position {
+  float pos_x    = 1;
+  float pos_y    = 2;
+  float rotation = 3;
+  float scale    = 4;
 }
 
+message ColorInfo {
+  uint32 color_p1 = 1; // rgb int (primary player color)
+  uint32 color_p2 = 2; // rgb int (secondary player color)
+  bool glowy     = 3;  // is glow enabled?
+}
+
+message PlayerVisuals {
+  /* protobuf doesn't have 16bit types */
+  uint32 icon_cube   = 1;
+  uint32 icon_ship   = 2;
+  uint32 icon_ball   = 3;
+  uint32 icon_ufo    = 4;
+  uint32 icon_wave   = 5;
+  uint32 icon_robot  = 6;
+  uint32 icon_spider = 7;
+  ColorInfo colors   = 8;
+}
+
+// --------- PACKET TYPES (suffixed with Packet) ---------
+// these might be used for proper auth later
+message PlaceholderPacket {}
+message Placeholder2Packet {}
+message Placeholder3Packet {}
+
+message PlayerJoinPacket {
+    Room room     = 1;
+    PlayerVisuals visual= 2;
+}
+
+message PlayerMovePacket {
+  Position pos_p1 = 1;
+  Position pos_p2 = 2;
+  // maybe a boolean in here to indicate whether dual mode is used to make impl easier?
+}
