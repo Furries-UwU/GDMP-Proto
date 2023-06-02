@@ -9,6 +9,8 @@ message Packet {
     Placeholder2Packet placeholder2 = 3;
     Placeholder3Packet placeholder3 = 4;
     PlayerJoinPacket player_join    = 5;
+    PlayerMovePacket player_move    = 6;
+    PlayerLeavePacket player_leave  = 7;
   };
 }
 
@@ -29,7 +31,7 @@ message Position {
 message ColorInfo {
   uint32 color_p1 = 1; // rgb int (primary player color)
   uint32 color_p2 = 2; // rgb int (secondary player color)
-  bool glowy     = 3;  // is glow enabled?
+  bool glowy      = 3;  // is glow enabled?
 }
 
 message PlayerVisuals {
@@ -51,12 +53,16 @@ message Placeholder2Packet {}
 message Placeholder3Packet {}
 
 message PlayerJoinPacket {
-    Room room     = 1;
-    PlayerVisuals visual= 2;
+    Room room            = 1;
+    PlayerVisuals visual = 2;
 }
 
 message PlayerMovePacket {
   Position pos_p1 = 1;
   Position pos_p2 = 2;
   // maybe a boolean in here to indicate whether dual mode is used to make impl easier?
+}
+
+message PlayerLeavePacket {
+  // todo
 }
