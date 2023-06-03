@@ -28,9 +28,14 @@ message Position {
   float scale    = 4;
 }
 
+message Colors {
+  uint32 primary   = 1;
+  uint32 secondary = 2;
+}
+
 message ColorInfo {
-  uint32 color_p1 = 1; // rgb int (primary player color)
-  uint32 color_p2 = 2; // rgb int (secondary player color)
+  Colors color_p1 = 1; // rgb int (primary player color)
+  Colors color_p2 = 2; // rgb int (secondary player color)
   bool glowy      = 3;  // is glow enabled?
 }
 
