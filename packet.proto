@@ -51,6 +51,17 @@ message PlayerVisuals {
   ColorInfo colors   = 8;
 }
 
+enum GameMode {
+  NONE   = 0;
+  CUBE   = 1;
+  SHIP   = 2;
+  BALL   = 3;
+  UFO    = 4;
+  WAVE   = 5;
+  ROBOT  = 6;
+  SPIDER = 7;
+}
+
 // --------- PACKET TYPES (suffixed with Packet) ---------
 // these might be used for proper auth later
 message PlaceholderPacket {}
@@ -64,9 +75,11 @@ message PlayerJoinPacket {
 }
 
 message PlayerMovePacket {
-  Position pos_p1 = 1;
-  Position pos_p2 = 2;
-  optional uint64 p_id = 3; // REQUIRED for server -> client
+  Position pos_p1      = 1;
+  Position pos_p2      = 2;
+  GameMode gamemode_p1 = 3;
+  GameMode gamemode_p2 = 4;
+  optional uint64 p_id = 5; // REQUIRED for server -> client
   // maybe a boolean in here to indicate whether dual mode is used to make impl easier?
 }
 
