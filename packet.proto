@@ -60,11 +60,13 @@ message Placeholder3Packet {}
 message PlayerJoinPacket {
     Room room            = 1;
     PlayerVisuals visual = 2;
+    optional uint64 p_id = 3; // REQUIRED for server -> client
 }
 
 message PlayerMovePacket {
   Position pos_p1 = 1;
   Position pos_p2 = 2;
+  optional uint64 p_id = 3; // REQUIRED for server -> client
   // maybe a boolean in here to indicate whether dual mode is used to make impl easier?
 }
 
