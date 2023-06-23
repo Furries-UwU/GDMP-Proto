@@ -82,5 +82,6 @@ message PlayerMovePacket {
 }
 
 message PlayerLeavePacket {
-  // todo
+  Room room            = 1;
+  optional uint64 p_id = 2; // REQUIRED for server -> client}
 }
