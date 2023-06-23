@@ -2,8 +2,6 @@ syntax = "proto3";
 package gdmp;
 
 message Packet {
-  int32 packet_type = 1; /* do we even need this lmao */
-
   oneof packet {
     PlaceholderPacket placeholder   = 2;
     Placeholder2Packet placeholder2 = 3;
