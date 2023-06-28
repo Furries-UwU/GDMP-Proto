@@ -89,10 +89,12 @@ message PlayerLeavePacket {
 
 message PlayerInvisibilityPacket {
   bool invisible                = 1;
+  // All of these optional field will be required if `invisible` is false
   optional Position pos_p1      = 2;
   optional Position pos_p2      = 3;
   optional GameMode gamemode_p1 = 4;
   optional GameMode gamemode_p2 = 5;
   optional PlayerVisuals visual = 6;
+  // ---------------------------------------------------------------------
   optional uint64 p_id          = 7; // REQUIRED for server -> client
 }
