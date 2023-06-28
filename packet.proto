@@ -3,19 +3,20 @@ package gdmp;
 
 message Packet {
   oneof packet {
-    PlaceholderPacket placeholder   = 2;
-    Placeholder2Packet placeholder2 = 3;
-    Placeholder3Packet placeholder3 = 4;
-    PlayerJoinPacket player_join    = 5;
-    PlayerMovePacket player_move    = 6;
-    PlayerLeavePacket player_leave  = 7;
+    PlaceholderPacket placeholder                = 2;
+    Placeholder2Packet placeholder2              = 3;
+    Placeholder3Packet placeholder3              = 4;
+    PlayerJoinPacket player_join                 = 5;
+    PlayerMovePacket player_move                 = 6;
+    PlayerLeavePacket player_leave               = 7;
+    PlayerInvisibilityPacket player_invisibility = 8;
   };
 }
 
 // --------- GENERIC TYPES (used in packets) ---------
 message Room {
   int32 level_id = 1;
-  /* maybe more stuff, private rooms maybe? */
+  // maybe more stuff, private rooms maybe?
 }
 
 // todo for position: flipped/gravity
@@ -83,5 +84,15 @@ message PlayerMovePacket {
 
 message PlayerLeavePacket {
   Room room            = 1;
-  optional uint64 p_id = 2; // REQUIRED for server -> client}
+  optional uint64 p_id = 2; // REQUIRED for server -> client
+}
+
+message PlayerInvisibilityPacket {
+  bool invisible                = 1;
+  optional Position pos_p1      = 2;
+  optional Position pos_p2      = 3;
+  optional GameMode gamemode_p1 = 4;
+  optional GameMode gamemode_p2 = 5;
+  optional PlayerVisuals visual = 6;
+  optional uint64 p_id          = 7; // REQUIRED for server -> client
 }
