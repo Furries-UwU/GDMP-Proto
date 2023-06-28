@@ -9,7 +9,7 @@ message Packet {
     PlayerJoinPacket player_join                 = 5;
     PlayerMovePacket player_move                 = 6;
     PlayerLeavePacket player_leave               = 7;
-    PlayerInvisibilityPacket player_invisibility = 8;
+    //PlayerInvisibilityPacket player_invisibility = 8;
   };
 }
 
@@ -25,6 +25,7 @@ message Position {
   float pos_y    = 2;
   float rotation = 3;
   float scale    = 4;
+  bool  visible  = 5;
 }
 
 message Colors {
@@ -87,6 +88,7 @@ message PlayerLeavePacket {
   optional uint64 p_id = 2; // REQUIRED for server -> client
 }
 
+/* this won't be used rn, for now we'll just add a bool to Position that indicates invisibility for simplicity's sake
 message PlayerInvisibilityPacket {
   bool invisible                = 1;
   // All of these optional field will be required if `invisible` is false
@@ -98,3 +100,4 @@ message PlayerInvisibilityPacket {
   // ---------------------------------------------------------------------
   optional uint64 p_id          = 7; // REQUIRED for server -> client
 }
+*/
