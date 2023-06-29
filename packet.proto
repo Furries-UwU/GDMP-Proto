@@ -72,7 +72,8 @@ message Placeholder3Packet {}
 message PlayerJoinPacket {
     Room room            = 1;
     PlayerVisuals visual = 2;
-    optional uint64 p_id = 3; // REQUIRED for server -> client
+    string      username = 3;
+    optional uint64 p_id = 4; // REQUIRED for server -> client
 }
 
 message PlayerMovePacket {
