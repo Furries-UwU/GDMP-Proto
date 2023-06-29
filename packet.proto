@@ -26,6 +26,7 @@ message Position {
   float rotation = 3;
   float scale    = 4;
   bool  visible  = 5;
+  bool  pressed  = 6;
 }
 
 message Colors {
