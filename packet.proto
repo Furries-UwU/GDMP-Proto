@@ -16,6 +16,7 @@ message Packet {
 // --------- GENERIC TYPES (used in packets) ---------
 message Room {
   int32 level_id = 1;
+  optional string key = 2;
   // maybe more stuff, private rooms maybe?
 }
 
