@@ -12,7 +12,7 @@ message Packet {
     PlayerLeavePacket player_leave                        = 7;
     //PlayerInvisibilityPacket player_invisibility        = 8;
     PlayerRequestRoomListPacket player_request_room_list  = 8;
-    PlayerRequestJoinRoom player_request_join_room        = 9;
+    PlayerRequestJoinRoomPacket player_request_join_room  = 9;
     RoomListPacket  room_list                             = 10;
   };
 //  Can be used to handle 2 way communication, although right now it's unneeded
@@ -26,7 +26,8 @@ message Room {
   int32 player_amount     = 3;
   int32 max_player        = 4;
   string owner            = 5;
-  optional int32 level_id = 6;
+  bool require_pass       = 6;
+  optional int32 level_id = 7;
 }
 
 // todo for position: flipped/gravity
@@ -118,7 +119,7 @@ message PlayerInvisibilityPacket {
 
 message PlayerRequestRoomListPacket { }
 
-message PlayerRequestJoinRoom {
+message PlayerRequestJoinRoomPacket {
   string id            = 1;
   optional string pass = 2;
 }
