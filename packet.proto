@@ -1,23 +1,32 @@
 syntax = "proto3";
+
 package gdmp;
 
 message Packet {
   oneof packet {
-    PlaceholderPacket placeholder                = 2;
-    Placeholder2Packet placeholder2              = 3;
-    Placeholder3Packet placeholder3              = 4;
-    PlayerJoinPacket player_join                 = 5;
-    PlayerMovePacket player_move                 = 6;
-    PlayerLeavePacket player_leave               = 7;
-    //PlayerInvisibilityPacket player_invisibility = 8;
+    PlaceholderPacket placeholder                         = 2;
+    Placeholder2Packet placeholder2                       = 3;
+    Placeholder3Packet placeholder3                       = 4;
+    PlayerJoinPacket player_join                          = 5;
+    PlayerMovePacket player_move                          = 6;
+    PlayerLeavePacket player_leave                        = 7;
+    //PlayerInvisibilityPacket player_invisibility        = 8;
+    PlayerRequestRoomListPacket player_request_room_list  = 8;
+    PlayerRequestJoinRoom player_request_join_room        = 9;
+    RoomListPacket  room_list                             = 10;
   };
+//  Can be used to handle 2 way communication, although right now it's unneeded
+//  string packet_id                                        = 11;
 }
 
 // --------- GENERIC TYPES (used in packets) ---------
 message Room {
-  int32 level_id = 1;
-  optional string key = 2;
-  // maybe more stuff, private rooms maybe?
+  int32 id                = 1;
+  string name             = 2;
+  int32 player_amount     = 3;
+  int32 max_player        = 4;
+  string owner            = 5;
+  optional int32 level_id = 6;
 }
 
 // todo for position: flipped/gravity
@@ -71,10 +80,10 @@ message Placeholder2Packet {}
 message Placeholder3Packet {}
 
 message PlayerJoinPacket {
-    Room room            = 1;
-    PlayerVisuals visual = 2;
-    string      username = 3;
-    optional uint64 p_id = 4; // REQUIRED for server -> client
+  Room room            = 1;
+  PlayerVisuals visual = 2;
+  string      username = 3;
+  optional uint64 p_id = 4; // REQUIRED for server -> client
 }
 
 message PlayerMovePacket {
@@ -104,3 +113,17 @@ message PlayerInvisibilityPacket {
   optional uint64 p_id          = 7; // REQUIRED for server -> client
 }
 */
+
+// Room specific stuff
+
+message PlayerRequestRoomListPacket { }
+
+message PlayerRequestJoinRoom {
+  string id            = 1;
+  optional string pass = 2;
+}
+
+message RoomListPacket {
+  repeated Room room   = 1;
+  optional uint64 p_id = 2; // REQUIRED for server -> client
+}
