@@ -21,7 +21,7 @@ message Packet {
 
 // --------- GENERIC TYPES (used in packets) ---------
 message Room {
-  int32 id                = 1;
+  string id               = 1;
   string name             = 2;
   int32 player_amount     = 3;
   int32 max_player        = 4;
