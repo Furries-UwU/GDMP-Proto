@@ -72,6 +72,7 @@ enum GameMode {
   WAVE   = 5;
   ROBOT  = 6;
   SPIDER = 7;
+  SWING  = 8;
 }
 
 // --------- PACKET TYPES (suffixed with Packet) ---------
