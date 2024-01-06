@@ -60,7 +60,8 @@ message PlayerVisuals {
   uint32 icon_wave   = 5;
   uint32 icon_robot  = 6;
   uint32 icon_spider = 7;
-  ColorInfo colors   = 8;
+  uint32 icon_swing  = 8;
+  ColorInfo colors   = 9;
 }
 
 enum GameMode {
